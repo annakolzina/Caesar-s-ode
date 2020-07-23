@@ -15,7 +15,12 @@ class CaesarLogic{
       for(int i =0; i < alphabet.length; i++){
         if(alphabet[i]==letter){
           k++;
-          return alphabet[i+shift];
+          if (i+shift >= alphabet.length)
+            return alphabet[shift-(alphabet.length-i)];
+          else if(i+shift < 0)
+            return alphabet[alphabet.length+shift+i];
+          else
+            return alphabet[i+shift];
         }
     }
         if(k!=0){
@@ -25,7 +30,6 @@ class CaesarLogic{
               }
           }
         }
-        else
           return letter;
       }
 
