@@ -10,22 +10,23 @@ class CaesarLogic{
 
 
     //поиск индекса элемента в алфавитах
-    int findIndex(char letter){
-      boolean k = false;
+    char findIndex(char letter, int shift){
+      int k = 0;
       for(int i =0; i < alphabet.length; i++){
         if(alphabet[i]==letter){
-          k = true;
-          return i;
+          k++;
+          return alphabet[i+shift];
         }
     }
-        if(k==false){
+        if(k!=0){
           for(int i =0; i < alphabet_big.length; i++){
               if(alphabet_big[i]==letter){
-                return i;
+                return alphabet_big[i+shift];
               }
           }
         }
-        return 0;
+        else
+          return letter;
       }
 
 
@@ -33,13 +34,11 @@ class CaesarLogic{
 
 
     void logic(String word, int shift){
-      int[] indexWords = new int[word.length()];
-      for(int i = 0; i < indexWords.length; i++){
-        indexWords[i] = findIndex(word.charAt(i));
+      String indexWords = "";
+      for(int i = 0; i < word.length(); i++){
+        indexWords += findIndex(word.charAt(i), shift);
       }
-      for(int item:indexWords){
-        System.out.println(item);
-      }
+      System.out.println(indexWords);
     }
 
 
